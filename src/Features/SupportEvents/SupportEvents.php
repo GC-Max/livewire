@@ -9,6 +9,7 @@ use Livewire\Features\SupportAttributes\AttributeLevel;
 use Livewire\ComponentHook;
 use Livewire\Exceptions\EventHandlerDoesNotExist;
 use Livewire\Mechanisms\HandleComponents\BaseRenderless;
+use Illuminate\Support\Arr;
 
 class SupportEvents extends ComponentHook
 {
@@ -16,6 +17,8 @@ class SupportEvents extends ComponentHook
     {
         if ($method === '__dispatch') {
             [$name, $params] = $params;
+
+            $params = Arr::wrap($params);
 
             $names = static::getListenerEventNames($this->component);
 
